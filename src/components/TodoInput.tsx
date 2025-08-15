@@ -1,10 +1,34 @@
-import React from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
+import React, { useState } from 'react';
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+interface TodoInputprops {
+  onAddTodo: (text: string) => void;
+}
+const TodoInput: React.FC<TodoInputprops> = ({ onAddTodo }) => {
+  const [text, setText] = useState('');
 
-const TodoInput: React.FC = () => {
+  const handleAddTodo = () => {
+    if (text.trim()) {
+      onAddTodo(text.trim());
+      setText('');
+    }
+  };
   return (
     <View style={styles.container}>
-      <TextInput style={styles.input} placeholder="Add a new task" />
+      <TextInput
+        value={text}
+        onChangeText={setText}
+        style={styles.input}
+        placeholder="Add a new task"
+      />
+      <TouchableOpacity onPress={handleAddTodo} style={styles.addTodoBtn}>
+        <Text style={styles.addTodoText}>Add</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -17,12 +41,21 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    height: 40,
     borderColor: '#ccc',
     borderWidth: 1,
     borderRadius: 5,
     paddingHorizontal: 10,
-    fontSize: 16,
+  },
+  addTodoBtn: {
+    backgroundColor: '#007aff',
+    paddingHorizontal: 15,
+    paddingVertical: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  addTodoText: {
+    color: '#fff',
+    fontWeight: 'bold',
   },
 });
 
