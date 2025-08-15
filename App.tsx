@@ -2,12 +2,9 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import TodoInput from './src/components/TodoInput';
 import { useState } from 'react';
+import { TodoList } from './src/components/TodoList';
+import { Todo } from './src/components/types';
 
-interface Todo {
-  id: string;
-  text: string;
-  completed: boolean;
-}
 function App(): React.JSX.Element {
   const [todoList, setTodoList] = useState<Todo[]>([]);
 
@@ -29,6 +26,7 @@ function App(): React.JSX.Element {
     <View style={styles.container}>
       <Text style={styles.headerText}>Todo App</Text>
       <TodoInput onAddTodo={addTodo} />
+      <TodoList todoList={todoList} />
     </View>
   );
 }
