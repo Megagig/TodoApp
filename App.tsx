@@ -1,9 +1,13 @@
 import { StyleSheet, Text, View } from 'react-native';
+import TodoInput from './src/components/TodoInput';
 
 function App(): React.JSX.Element {
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>Todo App</Text>
+      <TodoInput />
+      {/* Additional components like TodoList can be added here */}
+      {/* <TodoList /> */}
     </View>
   );
 }
